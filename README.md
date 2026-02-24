@@ -1,187 +1,90 @@
-DELIVERY EFFICIENCY AND DELAY RISK ANALYSIS
-
-SQL Server • Power BI • Operational Analytics
-
+# Delivery Efficiency & Delay Risk Analysis (SQL + Power BI)
 
 ## Project Overview
+This project analyzes delivery performance across routes, drivers, vehicles, and warehouses to identify **delay risk**, **cost inefficiencies**, and **operational bottlenecks**.
 
-  This project analyzes delivery performance across routes, drivers, and vehicle types to identify delay risk, cost exposure, and operational inefficiencies in a simulated logistics network.
-  
-  The workflow mirrors a real world analytics setup:
-  
-  SQL Server is used for data modeling, feature engineering, and business logic
-  
-  Power BI is used for KPI tracking, risk analysis, and decision support visualisation
-  
-  The result is a BI ready operational dashboard that logistics and supply chain teams could use to monitor reliability, cost efficiency, and delay drivers.
+The solution mirrors a real world logistics analytics workflow used by operations and supply chain teams, combining **SQL based data modeling** with **Power BI dashboards** for decision support.
 
+---
 
-## Business Problems Addressed
+## Business Questions Answered
+- What percentage of shipments are delayed overall?
+- Which routes carry the highest delivery delay risk?
+- How do driver experience and vehicle type impact delivery reliability?
+- What are the primary operational causes of delays?
+- How do cost efficiency and delivery reliability trade off across routes?
+- Which shipments represent the highest operational risk (delay + cost)?
 
-  How reliable is the delivery operation overall?
-  
-  Which routes pose the highest delay risk?
-  
-  Are some drivers consistently more exposed to delays?
-  
-  What are the main operational causes of late deliveries?
-  
-  How does cost efficiency trade off against reliability?
-  
-  Where should operations teams focus intervention first?
-
+---
 
 ## Data Model & Architecture
+The dataset is modeled using normalized operational tables:
+- **Shipments** (fact table)
+- **Drivers**
+- **Vehicles**
+- **Routes**
+- **Warehouses**
 
-  The dataset is modeled using normalized operational tables:
-  
-  Shipments
-  
-  Routes
-  
-  Drivers
-  
-  Vehicles
-  
-  Warehouses
-  
-  A single consolidated SQL view vw_delivery_efficiency serves as the analytics layer consumed directly by Power BI.
+A centralized analytics view, **`vw_delivery_efficiency`**, consolidates joins, derives business metrics, and acts as a **BI ready semantic layer** for Power BI.
 
+### Key Engineered Metrics
+- `DeliveryDays`
+- `IsDelayed`
+- `CostPerKM`
+- `DelayRiskScore` (composite operational risk metric)
+- Route, Driver, Vehicle, and Warehouse attributes
 
-## Key Engineered Fields (SQL)
+This layered design reflects **production grade BI architecture** used in operational reporting systems.
 
-  DeliveryDays: Delivery duration in days
-  
-  IsDelayed: Binary delay flag (on time vs delayed)
-  
-  DelayReason: Operational cause of delay
-  
-  CostPerKM: Cost efficiency metric
-  
-  DelayRiskScore: Composite operational risk score
-  
-  RouteName: Human readable From → To route
-  
-  This layered design mirrors production grade BI architecture, separating raw operational data from analytical logic.
+---
 
+## Power BI Dashboard Overview
 
-## Dashboard Overview (Power BI)
+### Executive KPIs
+- **Total Shipments**
+- **Overall Delay Rate**
+- **Average Delivery Days**
+- **Average Cost per KM**
 
-  The Power BI report answers the business questions through the following views:
+These KPIs provide an at a glance view of delivery performance and risk exposure.
 
-KPI SUMMARY
+### Operational Risk Analysis
+- **Delay Rate by Route**: identifies structurally risky routes
+- **Driver Delay Rate**: highlights reliability variation across drivers
+- **Vehicle Type vs Delay Rate**: surfaces asset related risk
+- **Primary Delay Causes**: operational bottleneck breakdown
 
-  Total Shipments
-  
-  Shipments Delayed
-  
-  Overall Delay Rate
-  
-  Average Delay Risk Score
-  
-  Average Cost per KM
+### Cost vs Reliability
+- **Cost Efficiency vs Delay Risk** scatter plot highlights trade offs between cost and reliability.
+- High risk shipments (delayed + high cost) are easily identifiable for prioritised intervention.
 
-
-ROUTE RISK ANALYSIS
-
-  Routes ranked by average delay risk
-  
-  Identification of structurally risky routes (not just high volume)
-
-
-DELAY DRIVERS
-
-  Breakdown of delay reasons by route
-  
-  Highlights operational bottlenecks such as:
-  
-  Traffic congestion
-  
-  Vehicle breakdowns
-  
-  Staff shortages
-  
-  Warehouse backlog
-  
-  Severe weather
-
-
-DRIVER RISK & RELIABILITY
-
-  Driver level shipment volume
-  
-  Delay rate per driver
-  
-  Average risk score
-  
-  Experience vs reliability comparison
-
-
-COST EFFICIENCY VS DELAY RISK
-
-  Scatter plot comparing:
-  
-  Cost per KM (efficiency)
-  
-  Delay risk exposure
-  
-  Demonstrates that cheapest routes are not always the most reliable
-
-
-DELIVERY TIME DISTRIBUTION
-
-  Distribution of delivery durations (1, 2, 3+ days)
-  
-  Highlights consistency and variability in service levels
-
-
+---
 
 ## Key Insights
+- Approximately **one-third of shipments experience delays**, indicating material operational risk.
+- Several routes show **high delay rates despite low shipment volume**, suggesting structural issues.
+- **Driver level delay rates vary significantly**, revealing risk not visible at aggregate level.
+- **Cost efficient routes are not always the most reliable**, highlighting operational trade offs.
+- Delay reasons (traffic, weather, staffing, vehicle issues) provide **clear levers for improvement**.
+- The **DelayRiskScore** enables proactive risk prioritisation rather than reactive reporting.
 
-  36% of shipments were delayed, indicating meaningful operational risk
-  
-  Certain routes show high risk despite low volume, suggesting structural issues
-  
-  Driver performance varies significantly, exposing hidden reliability risk
-  
-  Lower cost per KM does not guarantee delivery reliability
-  
-  Delay reasons provide actionable levers for operational improvement
-  
-  Risk scoring enables prioritisation of high impact interventions
+---
 
+## Tools & Skills Used
+- **SQL Server (T-SQL)**
+  - Views, Joins, CASE logic, Aggregations
+- **Power BI**
+  - DAX Measures, KPIs, Tooltips, Risk Visualisation
+- Data Modeling & BI Layer Design
+- Logistics & Operational Analytics
 
-## Tools & Skills Demonstrated
-
-SQL Server (T-SQL)
-
-  Views, joins, CASE logic, aggregations
-
-  Business rule implementation
-
-Power BI
-
-  DAX measures
-
-  KPI cards
-
-  Drill-downs & tooltips
-
-Data modeling & BI layer design
-
-Operational & logistics analytics
-
-Translating raw data into executive ready insights
-
+---
 
 ## Outcome
+A scalable, BI ready logistics analytics model that supports:
+- Delivery performance monitoring
+- Risk based operational decision making
+- Cost vs reliability evaluation
+- Executive and operational reporting
 
-  A realistic, interview ready logistics analytics project demonstrating the ability to:
-  
-  Design a clean analytical data layer
-  
-  Engineer operational risk metrics
-  
-  Build clear, decision focused BI dashboards
-  
-  Communicate insights relevant to supply chain and operations teams
+This project demonstrates end-to end analytics capability: **data modeling → insight → decision support**.
