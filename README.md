@@ -87,4 +87,4 @@ A scalable, BI ready logistics analytics model that supports:
 - Cost vs reliability evaluation
 - Executive and operational reporting
 
-This project demonstrates end-to end analytics capability: **data modeling → insight → decision support**.
+This project demonstrates end to end analytics capability: **data modeling → insight → decision support**.
